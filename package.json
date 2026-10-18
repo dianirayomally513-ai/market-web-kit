@@ -1,0 +1,23 @@
+{
+  "name": "market-web-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable kit for Africa/SEA content & landing sites (阿泰)",
+  "scripts": {
+    "preview": "bash scripts/preview.sh",
+    "preview:site": "bash scripts/preview.sh",
+    "build": "bash scripts/build.sh",
+    "new-site": "bash scripts/new-site.sh",
+    "start": "bash scripts/start.sh"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  },
+  "optionalDependencies": {
+    "wrangler": "^4.40.0",
+    "netlify-cli": "^23.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
