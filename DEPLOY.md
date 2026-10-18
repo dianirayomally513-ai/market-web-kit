@@ -1,5 +1,32 @@
 # 部署指南（写内容 → 预览 → 上线）
 
+## ✅ 已上线：GitHub Pages（一条命令发布）
+
+- 仓库：https://github.com/dianirayomally513-ai/market-web-kit （公开）
+- 站点总入口：https://dianirayomally513-ai.github.io/market-web-kit/
+- 示例站：https://dianirayomally513-ai.github.io/market-web-kit/ph-howto-sample/
+
+### 日常发布流程
+```bash
+cd /workspace/market-web-kit
+git add -A && git commit -m "更新内容" && git push   # 保存源码到 main
+npm run deploy                                         # 构建全部站点并发布到 gh-pages，约 1 分钟生效
+```
+
+`npm run deploy` 会：构建 `sites/` 下所有站点到 `dist/` → 生成总入口 `dist/index.html` → 强推到 `gh-pages` 分支，GitHub Pages 自动发布。
+
+### 新增站点
+```bash
+npm run new-site -- my-new-site   # 写内容…
+npm run deploy                    # 上线地址：.../market-web-kit/my-new-site/
+```
+
+> 说明：当前 GitHub 授权没有 `workflow` 权限，所以未使用 GitHub Actions 自动部署（push 即部署）。如需该方式，需重新授权 `gh auth refresh -s workflow` 后再添加 `.github/workflows/pages.yml`。
+> 注意：仓库公开，不要提交 `.env` 或任何密钥。
+
+---
+
+
 目标：从本盒子把静态站发到**免费或低成本**托管。优先路径不依赖付费套餐。
 
 ---
