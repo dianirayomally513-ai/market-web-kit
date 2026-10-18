@@ -1,0 +1,12 @@
+market-web-kit ready (2026-10-18 Asia/Shanghai)
+
+Preview (left running): http://127.0.0.1:4173/sites/ph-howto-sample/
+Start again: cd /workspace/market-web-kit && npm start
+
+Installed: serve, wrangler 4.86, netlify-cli 23.15
+Not installed: nginx, docker (not required)
+
+Credentials still needed from user for public deploy:
+- GitHub: gh auth login
+- Cloudflare: CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
+- Netlify: NETLIFY_AUTH_TOKEN or netlify login

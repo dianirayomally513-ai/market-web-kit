@@ -8,7 +8,8 @@
     "preview:site": "bash scripts/preview.sh",
     "build": "bash scripts/build.sh",
     "new-site": "bash scripts/new-site.sh",
-    "start": "bash scripts/start.sh"
+    "start": "bash scripts/start.sh",
+    "deploy": "bash scripts/deploy-gh.sh"
   },
   "devDependencies": {
     "serve": "^14.2.4"
