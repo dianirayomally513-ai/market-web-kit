@@ -1,0 +1,9 @@
+@import url("../_shared/css/base.css");
+
+.note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.85rem;
+  margin: 1.5rem 0;
+}
