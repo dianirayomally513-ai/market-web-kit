@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>账单 CSV 导入 · 自动分类记账</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>
+      账单 CSV 导入
+      <span class="badge">不连接微信/支付宝接口</span>
+    </h1>
+    <p class="sub">
+      导入微信支付 / 支付宝导出的 CSV，按商户名自动分类。数据仅在本机浏览器处理，不上传服务器。
+      <span id="format-badge"></span>
+    </p>
+
+    <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="选择或拖入 CSV 文件">
+      <strong>点击选择文件</strong> 或拖入 .csv
+      <p class="hint">支持微信「账单导出」与支付宝「交易记录导出」CSV（建议 UTF-8）</p>
+      <div class="btn-row">
+        <button type="button" class="btn secondary" data-sample="samples/wechat-sample.csv">加载微信样例</button>
+        <button type="button" class="btn secondary" data-sample="samples/alipay-sample.csv">加载支付宝样例</button>
+      </div>
+      <input id="file-input" type="file" accept=".csv,.txt,text/csv" />
+    </div>
+
+    <div id="error"></div>
+
+    <div id="app-main">
+      <div class="summary">
+        <div class="card">
+          <div class="label">支出合计（不含退款）</div>
+          <div class="value expense" id="sum-expense">¥0.00</div>
+        </div>
+        <div class="card">
+          <div class="label">收入合计（不含退款）</div>
+          <div class="value income" id="sum-income">¥0.00</div>
+        </div>
+        <div class="card">
+          <div class="label">显示笔数 / 总笔数</div>
+          <div class="value" id="sum-count">0</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>按分类汇总（支出）</h2>
+        <div id="cat-bars" class="cat-bars"></div>
+      </div>
+
+      <div id="unmatched-tip" class="unmatched-tip" style="display:none"></div>
+
+      <div class="panel">
+        <div class="toolbar">
+          <label>
+            收/支
+            <select id="filter-dir">
+              <option value="全部">全部</option>
+              <option value="支出" selected>支出</option>
+              <option value="收入">收入</option>
+            </select>
+          </label>
+          <label>
+            分类
+            <select id="filter-cat">
+              <option value="全部">全部分类</option>
+            </select>
+          </label>
+          <label>
+            <input type="checkbox" id="include-refunds" />
+            显示退款/关闭单（默认不计入支出合计）
+          </label>
+          <button type="button" class="btn secondary" id="btn-reimport">重新导入</button>
+          <button type="button" class="btn" id="btn-export">导出已分类 CSV</button>
+          <button type="button" class="btn secondary" id="btn-reset-overrides">清除手工分类</button>
+          <button type="button" class="btn danger" id="btn-clear">清空</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>对方 / 商品</th>
+                <th>金额</th>
+                <th>收/支</th>
+                <th>分类</th>
+                <th>来源</th>
+              </tr>
+            </thead>
+            <tbody id="txn-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      本工具无法自动读取微信/支付宝实时流水，仅支持你手动导出的 CSV。
+      分类规则见 <code>rules.js</code>。编码异常时请用记事本另存为 UTF-8。
+    </p>
+  </div>
+
+  <script src="rules.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
