@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>封闭赛道计时赛 · Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="hud-top">
+      <div class="brand">封闭赛道 · 一圈计时</div>
+      <div class="stats">
+        <span>用时 <strong id="timer">0.00</strong>s</span>
+        <span>速度 <strong id="speed">0</strong> km/h</span>
+        <span>罚时 <strong id="penalty">0.0</strong>s</span>
+      </div>
+    </header>
+
+    <canvas id="game" width="960" height="640" aria-label="第三人称俯视赛道"></canvas>
+
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h1>封闭赛道计时赛</h1>
+        <p>第三人称俯视跟车 · 绕完一圈冲过终点</p>
+        <ul class="tips">
+          <li>方向键 / WASD 加速、刹车、转向</li>
+          <li>撞到护栏会轻微弹开并扣 0.5 秒罚时</li>
+          <li>车辆质量约 3 吨，影响加速与制动手感</li>
+        </ul>
+        <button id="btn-start" type="button">开始计时</button>
+      </div>
+    </div>
+
+    <div id="finish" class="overlay hidden">
+      <div class="panel">
+        <h1>完赛！</h1>
+        <p>总用时 <strong id="final-time">0.00</strong> 秒</p>
+        <p class="sub">其中罚时 <span id="final-penalty">0.0</span> 秒</p>
+        <button id="btn-restart" type="button">再开一局</button>
+      </div>
+    </div>
+
+    <div class="touch-pad" id="touch-pad" aria-hidden="true">
+      <button type="button" data-key="ArrowLeft">◀</button>
+      <div class="touch-mid">
+        <button type="button" data-key="ArrowUp">▲</button>
+        <button type="button" data-key="ArrowDown">▼</button>
+      </div>
+      <button type="button" data-key="ArrowRight">▶</button>
+    </div>
+
+    <footer class="hud-bottom">
+      <span>视角：第三人称俯视跟车</span>
+      <span>空格也可刹车</span>
+    </footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
